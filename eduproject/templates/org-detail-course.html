@@ -1,0 +1,46 @@
+{% extends 'base_org.html' %}
+
+{% load staticfiles %}
+
+{% block title %}机构课程列表页{% endblock %}
+
+{% block path %}机构课程{% endblock %}
+
+{% block right %}
+<div class="right companycenter layout" >
+		<div class="head">
+			<h1>机构课程</h1>
+		</div>
+		<div class="brief group_list">
+
+                {% for course in courses %}
+                <div class="module1_5 box">
+                    <a class="comp-img-box" href="{% url 'course:coursedetail' course.id %}">
+
+                        <img width="214" height="195" src="{{ MEDIA_URL }}{{ course.image }}"/>
+                    </a>
+                    <div class="des">
+                        <a href=""><h2>{{ course.name }}</h2></a>
+                        <span class="fl">课时：<i class="key">{{ course.learn_time }}</i></span>
+                        <span class="fr">学习人数：{{ course.student_nums }}</span>
+                    </div>
+                    <div class="bottom">
+                        <span class="fl">{{ course.org.name }}</span>
+                         <span class="star fr  notlogin
+                            " data-favid="13" data-fav-type="4">
+                            {{ course.fav_nums }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+		</div>
+			<div class="pageturn">
+                <ul class="pagelist">
+                    <li class="active"><a href="?page=1">1</a></li>
+                </ul>
+            </div>
+	</div>
+
+{% endblock %}
